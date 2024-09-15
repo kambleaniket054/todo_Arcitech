@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:todo_architech/MyRoutes.dart';
+import 'package:todo_architech/MyTask_Bloc/taskController.dart';
 import 'package:todo_architech/loginBlock/login_Controller.dart';
+import 'package:objectbox/objectbox.dart';
+import 'package:todo_architech/repository/objectBox_helper.dart';
 
 import 'loginBlock/logincontroll.dart';
-
-void main() {
+late final objectBoxhelper;
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  objectBoxhelper = await ObjectBoxhelper.create();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
   const MyApp({super.key});
 
   // This widget is the root of your application.
@@ -17,7 +24,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<login_Controller>(create:(context) => login_Controller())
+        BlocProvider<login_Controller>(create:(context) => login_Controller()),
+        BlocProvider<TaskController>(create:(context) => TaskController()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -83,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColorLight,
+      backgroundColor:  Color(0XFFFa3d5e0),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.

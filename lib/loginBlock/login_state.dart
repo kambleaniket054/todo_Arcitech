@@ -1,11 +1,18 @@
-import 'package:todo_architech/Login.dart';
+import 'package:todo_architech/Screeens/Login.dart';
 
 abstract class loginstate{}
 
-class logininitState extends loginstate{
+class logininitState extends loginstate{}
 
+class logindataReceive extends loginstate{
+  String response = "";
 }
-
-class logindataReceive extends loginstate{}
-class logindataReceiveError extends loginstate{}
+class logindataReceiveError extends loginstate{
+  String Errormsg = "";
+  String errorCode = "0";
+  logindataReceiveError({this.Errormsg = "",this.errorCode = "0"});
+}
 class loginloading extends loginstate{}
+
+class usercreatesucesss extends loginstate{}
+class usercreatefail extends loginstate{}
